@@ -1,101 +1,237 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DASHBOARD TUGAS PBW</title>
+    <title>Dashboard Tugas PBW - Siti Aisyah</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            /* User's Specific Color Palette */
+            --bg-color: #FDF4E3;
+            /* Cream Background */
+            --primary-color: #134686;
+            /* Deep Blue - Headers/Links */
+            --accent-color: #ED3F27;
+            /* Orange/Red - Hovers/Icons */
+            --secondary-color: #FEB21A;
+            /* Yellow/Gold - Borders/Accents */
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #FDF4E3;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
             margin: 0;
-            padding: 40px 20px;
+            padding: 0;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            border-top: 5px solid #134686;
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
         }
 
-        h1 {
-            color: #134686;
+        .dashboard-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+            border-top: 5px solid var(--primary-color);
+            /* Blue Top Border */
+        }
+
+        /* Header Section */
+        .header {
             text-align: center;
-            margin-bottom: 10px;
+            padding: 40px 20px 20px;
+            position: relative;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            margin: 0 0 10px;
             font-size: 28px;
+            font-weight: 700;
         }
 
-        .info {
-            text-align: center;
-            color: #ED3F27;
-            font-size: 18px;
-            margin-bottom: 30px;
-            font-weight: bold;
-        }
-
-        .daftar-tugas {
-            background-color: #FDF4E3;
-            padding: 25px;
-            border-left: 4px solid #FEB21A;
-        }
-
-        .daftar-tugas h2 {
-            color: #134686;
-            margin-bottom: 20px;
-        }
-
-        ol {
-            padding-left: 25px;
-        }
-
-        ol li {
-            margin-bottom: 15px;
+        .header .subtitle {
+            color: var(--accent-color);
+            /* Orange/Red for Name/Info */
             font-size: 16px;
-            line-height: 1.8;
+            font-weight: 600;
+            margin: 0;
         }
 
-        ol li a {
-            color: #134686;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
+        .divider {
+            height: 2px;
+            width: 60px;
+            background-color: var(--secondary-color);
+            /* Yellow/Gold Divider */
+            margin: 20px auto;
+            border-radius: 2px;
         }
 
-        ol li a:hover {
-            color: #ED3F27;
-            text-decoration: underline;
+        /* Tasks Grid */
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px 40px 40px;
         }
 
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #FEB21A;
-            color: #666;
+        .task-item {
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            border-left: 4px solid var(--secondary-color);
+            /* Yellow/Gold Left Border */
+        }
+
+        .task-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(19, 70, 134, 0.1);
+            border-left-color: var(--accent-color);
+            /* Turns Orange/Red on Hover */
+        }
+
+        .task-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .task-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .task-desc {
             font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            /* Orange/Red on Hover */
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        /* Demo Section Specifics */
+        .demo-links {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .demo-links .btn {
+            flex: 1;
+            padding: 8px;
+            font-size: 13px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #eee;
+            font-size: 13px;
+            color: #888;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>Kumpulan Tugas Pemrograman Berbasis  Web</h1>
-        <div class="info">Siti Aisyah - 11123257 - 3KA20</div>
-        
-        <div class="daftar-tugas">
-            <h2>📚 Daftar Tugas</h2>
-            <ol> 
-                <li><a href="./cvfull.html" rel="Tugas 1">Tugas CV Siti Aisyah</a></li>
-                <li><a href="https://drive.google.com/file/d/1xs1GhT21lnibYvleITMvyGjaVQ2iml29/view?usp=sharing" rel="Tugas 2">Tugas Analisis Online Shop</a></li>
-                <li><a href="https://serbabuah.gt.tc/" target="_blank" rel="noopener"> Tugas Online Shop "SerbaBuah" </a></li>
-            </ol>
-        </div>
+        <div class="dashboard-card">
+            <div class="header">
+                <h1>DASHBOARD TUGAS PBW</h1>
+                <p class="subtitle">Siti Aisyah - 11123257 - 3KA20</p>
+                <div class="divider"></div>
+            </div>
 
-        <div class="footer">
-            <p>Pemrograman Berbasis Web | Universitas Gunadarma</p>
+            <div class="tasks-grid">
+                <!-- Tugas 1 -->
+                <div class="task-item">
+                    <div class="task-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="task-title">Tugas 1 - CV Personal</div>
+                    <div class="task-desc">Curriculum Vitae dengan desain modern dan responsif.</div>
+                    <a href="./cv.html" class="btn">Lihat CV</a>
+                </div>
+
+                <!-- Tugas 2 -->
+                <div class="task-item">
+                    <div class="task-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="task-title">Tugas 2 - Analisis</div>
+                    <div class="task-desc">Analisis website Online Shop (Dokumen PDF).</div>
+                    <a href="https://drive.google.com/file/d/1xs1GhT21lnibYvleITMvyGjaVQ2iml29/view?usp=sharing"
+                        class="btn" target="_blank">Lihat Tugas</a>
+                </div>
+
+                <!-- Tugas 3 -->
+                <div class="task-item" style="grid-column: 1 / -1;">
+                    <div class="task-icon"><i class="fas fa-store"></i></div>
+                    <div class="task-title">Tugas 3 - SerbaBuah</div>
+                    <div class="task-desc">Website E-Commerce lengkap dengan fitur admin panel, kategori produk, dan
+                        keranjang belanja.</div>
+                    <div class="demo-links">
+                        <a href="https://serbabuah.gt.tc/" class="btn" target="_blank"> <i class="fas fa-globe"></i>
+                            Website Utama</a>
+                        <a href="https://serbabuah.gt.tc/admin" class="btn btn-outline" target="_blank"> <i
+                                class="fas fa-lock"></i> Panel Admin</a>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                Pemrograman Berbasis Web | Universitas Gunadarma
+            </footer>
         </div>
     </div>
 </body>
+
 </html>
